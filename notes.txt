@@ -1,0 +1,6 @@
+# 1. Provide an overall rating of the instruction
+# 2. Provide an overall rating of the course.
+# 3. Estimate how much you learned in the course.
+# 4. Rate the effectiveness of the course in challenging you intellectually.
+# 5. Rate the effectiveness of the instructor(s) in stimulating your interest in the subject.
+# 6. Estimate the average number of hours per week you spent on this course outside of class and lab time.
