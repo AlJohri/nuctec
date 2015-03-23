@@ -8,7 +8,7 @@ fieldnames = course_fieldnames + ctec_fieldnames + additional_fields
 
 easy_words = ["easy", "stress free", "painless"]
 
-with open("ctec.csv", "w") as f:
+with open("ctecs.csv", "w") as f:
 	writer = csv.DictWriter(f, fieldnames=fieldnames)
 	writer.writeheader()
 	for ctec in ctecs.find():
