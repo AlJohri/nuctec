@@ -5,6 +5,8 @@
 workon nuctec
 python scrape.py
 python driver.py
+python post_process.py
+RScript analysis.R
 ```
 
 -----------------------------------
