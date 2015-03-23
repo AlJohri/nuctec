@@ -3,7 +3,10 @@ from models import ctecs, courses, terms
 for ctec in ctecs.find():
 	ctec['subj'] = ctec['subj'].split()[0]
 	print unicode("[{academic_term}] - {subj} {class_title}").format(**ctec)
-	print ctec['essay']
+	print ""
+	for essay in ctec['essay'].split("/"):
+		print essay.replace("\n", "")
+		print "\n"
 	print "-----------------------------"
 
 # from utils import group_ctecs_by_course_id
