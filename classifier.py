@@ -58,7 +58,49 @@ t2 = naive_bayes.feature_log_prob_[1] # P(x_i|y1)
 for term, score in [(terms[i],t1[i]) for i in np.array(t1).argsort()][:20]:
 	print term, score
 
+# understandable -6.70815289174
+# dynamic -6.6683283872
+# phenomenal -6.63198925724
+# theoretical -6.62061869248
+# deeper -6.57624596919
+# eager -6.5547354142
+# quick -6.5450811643
+# lucky -6.54208488376
+# smaller -6.50650658472
+# genuine -6.49551912859
+# absolute -6.48994444526
+# intriguing -6.48078187485
+# biggest -6.47661177739
+# inspiring -6.47532410433
+# greater -6.45677303351
+# hardest -6.45455307335
+# northwestern -6.44552073279
+# worse -6.43931001397
+# depth -6.43436576415
+# deep -6.43377428772
+
 print "\n\n-------------------------------\n\n"
 
 for term, score in [(terms[i],t2[i]) for i in np.array(t2).argsort()][:20]:
 	print term, score
+
+# redundant -6.83700719134
+# irrelevant -6.68967816095
+# arbitrary -6.67620195408
+# unorganized -6.65154743552
+# awkward -6.64451938401
+# stupid -6.62350850271
+# ok -6.62162502901
+# common -6.62046422192
+# intriguing -6.61275365408
+# biggest -6.59869793319
+# quick -6.58479769186
+# bearable -6.57735518157
+# disappointing -6.55069110906
+# mandatory -6.53581956028
+# genuine -6.46910000666
+# significant -6.44115627101
+# unnecessary -6.43921530358
+# self -6.435920542
+# regular -6.42196129543
+# honest -6.42139656336
