@@ -1,12 +1,9 @@
 from models import ctecs, courses, terms
 
-for ctec in ctecs.find():
+for ctec in ctecs.find({'corrected_essay': {'$exists': True}}):
 	ctec['subj'] = ctec['subj'].split()[0]
 	print unicode("[{academic_term}] - {subj} {class_title}").format(**ctec)
-	print ""
-	for essay in ctec['essay'].split("/"):
-		print essay.replace("\n", "")
-		print "\n"
+	print ctec['essay']
 	print "-----------------------------"
 
 # from utils import group_ctecs_by_course_id
