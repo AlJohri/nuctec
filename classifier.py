@@ -19,7 +19,7 @@ data = []
 target = []
 
 for course_id, course_ctecs in grouped_course_ctecs.iteritems():
-	cur_text = "\n".join([course_ctec['essay'] for course_ctec in course_ctecs]).replace("/", " ")
+	cur_text = "\n".join([course_ctec['adjectives'] for course_ctec in course_ctecs]).replace("/", " ")
 	avg_challenge = sum([float(course_ctec['question3_average_rating']) for course_ctec in course_ctecs if course_ctec['question3_average_rating'] != ""])/len(filter(lambda x: x != "", course_ctecs))
 	courses.append(course_id)
 	data.append(cur_text)
@@ -37,8 +37,8 @@ class LemmaTokenizer(object):
         return [self.wnl.lemmatize(t) for t in word_tokenize(doc)]
 
 naive_bayes = MultinomialNB(alpha=1.0, fit_prior=True)
-vectorizer = TfidfVectorizer(tokenizer=LemmaTokenizer(), max_df=0.5, min_df=0.1)
-# vectorizer = TfidfVectorizer(min_df=.1, max_df=.6, stop_words='english')
+# vectorizer = TfidfVectorizer(tokenizer=LemmaTokenizer(), max_df=0.5, min_df=0.1)
+vectorizer = TfidfVectorizer(min_df=.1, max_df=.6, stop_words='english')
 
 data = vectorizer.fit_transform(data)
 print data.shape

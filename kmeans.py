@@ -3,7 +3,7 @@ grouped_course_ctecs = group_ctecs_by_course_id()
 
 text = []
 for course_id, course_ctecs in grouped_course_ctecs.iteritems():
-	current_course_text = "\n".join([course_ctec['essay'] for course_ctec in course_ctecs])
+	current_course_text = "\n".join([" ".join(course_ctec['essay'].split("/")) for course_ctec in course_ctecs])
 	text.append(current_course_text)
 
 import random
