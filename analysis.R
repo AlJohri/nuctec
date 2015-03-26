@@ -14,6 +14,8 @@ library("ggplot2")
 # Perhaps when i group by course, i should also add instructor in the mix
 
 ctecs <- read.csv("ctecs.csv")
+mccormick_theme <- read.csv("mccormick_theme.csv")
+mccormick_theme$title <- NULL
 
 ctecs_by_course <- ctecs %>% group_by(school, subject, course_id, catalog_num, title) %>%
   summarise(num_sections = length(id),
@@ -26,6 +28,8 @@ ctecs_by_course <- ctecs %>% group_by(school, subject, course_id, catalog_num, t
             easy_a_ness = mean(easy_a)) %>% 
   filter(num_sections > 3) %>% ungroup()
 
+ctecs_by_course <- merge(ctecs_by_course, mccormick_theme, by=c("subject", "catalog_num"), all.x = TRUE)
+
 ctecs_by_instructor <- ctecs %>% group_by(school, subject, instructor) %>%
   summarise(num_sections = length(id),
             num_terms = length(unique(term)),
@@ -33,7 +37,7 @@ ctecs_by_instructor <- ctecs %>% group_by(school, subject, instructor) %>%
             avg_stimulated = mean(question4_average_rating)) %>% 
   filter(num_sections > 3) %>% ungroup()
 
-ctecs_by_course_and_instructor <- ctecs %>% group_by(school, subject, course_id, catalog_num, title, instructor) %>%
+ctecs_by_course_and_instructor <- ctecs %>% group_by(school, subject, course_id, catalog_num, title, quarter, instructor) %>%
   summarise(num_sections = length(id),
             avg_instruction = mean(question0_average_rating),
             avg_goodness = mean(question1_average_rating),
@@ -44,6 +48,8 @@ ctecs_by_course_and_instructor <- ctecs %>% group_by(school, subject, course_id,
             avg_hardness = mean(hardness),
             something = mean(easiness) - mean(hardness)) %>% 
   filter(num_sections > 3) %>% ungroup()
+
+ctecs_by_course_and_instructor <- merge(ctecs_by_course_and_instructor, mccormick_theme, by=c("subject", "catalog_num"), all.x = TRUE)
 
 # View(ctecs_by_course_and_instructor %>% filter(grepl('^(2|3)', catalog_num)))
 
