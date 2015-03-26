@@ -4,3 +4,15 @@
 # 4. Rate the effectiveness of the course in challenging you intellectually.
 # 5. Rate the effectiveness of the instructor(s) in stimulating your interest in the subject.
 # 6. Estimate the average number of hours per week you spent on this course outside of class and lab time.
+
+
+# How early a class is to how good it is? (class times change!!!!)
+
+# Can you find the requirements for each major and compare how much time/ how difficult each one is?
+
+
+# LOOK INTO TIME SPEND ON COURSE
+
+http://www.mccormick.northwestern.edu/documents/students/undergraduate/social-science-humanities-theme/approved-theme-course-listing.pdf
+
+http://handsondatascience.com/TextMiningO.pdf

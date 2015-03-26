@@ -244,7 +244,9 @@ def get_all_ctecs(subject, caesar_scraper=None):
         logging.debug("Starting %s %s %s" % (subject, current_class_title, i))
         for j, quarter in caesar_scraper.get_ctecs(subject, i):
             ctec = caesar_scraper.get_ctec(subject, j)
-            if ctec == {}: continue
+            if ctec == {}:
+                logging.error("Could not download %s %s %s %s %s" % (subject, current_catalog_num, quarter, i, j))
+                continue
 
             current_catalog_num = current_class_title.split(":")[0]
             original_catalog_num = "-".join(ctec['class_title'].split()[0].split("-")[0:2])
@@ -271,11 +273,14 @@ def get_all_ctecs(subject, caesar_scraper=None):
                 logging.debug("Saved %s %s %s %s %s" % (subject, current_catalog_num, quarter, i, j))
 
             # BUG, if the course starts with 300, CTEC thinks its part of the graduate school
+            # for some subjects such as EECS
             if original_catalog_num[0] == "3" or subj != subject:
                 caesar_scraper.post_doc(caesar_scraper.CTEC_URL, data={"ICAction": "NW_CT_PB_SRCH_ACAD_CAREER", "NW_CT_PB_SRCH_ACAD_CAREER": "UGRD", "NW_CT_PB_SRCH_SUBJECT": subject, "NW_CT_PB_SRCH_NW_CTEC_SRCH_CHOIC$4$": "C"})
                 caesar_scraper.post_doc(caesar_scraper.CTEC_URL, data={"ICAction": "NW_CT_PB_SRCH_SUBJECT", "NW_CT_PB_SRCH_ACAD_CAREER": "UGRD", "NW_CT_PB_SRCH_SUBJECT": subject, "NW_CT_PB_SRCH_NW_CTEC_SRCH_CHOIC$4$": "C"})
                 caesar_scraper.get_courses(subject)
                 caesar_scraper.get_ctecs(subject, i)
+                # sometimes after getting a single ctec, we need to get the courses AND ctecs again
+                # because it routes back to the original search page
             elif subj == "AAL" or subj == "AF_AM_ST":
                 caesar_scraper.get_ctecs(subject, i)
                 # sometimes after getting a single ctec, we need to get ctecs again
