@@ -54,6 +54,7 @@ class CaesarScraper(object):
 
     NO_LONGER_AVAILABLE_CAESAR_PAGE = "This page is no longer available."
     BLANK_CAESAR_PAGE = "meta HTTP-EQUIV='Refresh'"
+    NO_CTEC_ACCESS_PAGE = "You are not authorized to access CTECs"
 
     __attrs__ = ['session', 'icsid', 'icelementnum', 'icstatenum']
 
@@ -97,6 +98,8 @@ class CaesarScraper(object):
             raise Exception("This page is no longer available." +
                 "To continue, return to your most recent active page " +
                 "or select one of the navigation icons in the header above.")
+        if self.NO_CTEC_ACCESS_PAGE in response.content:
+            raise Exception("This account doesn't have access to CTECs.")
         doc = lxml.html.fromstring(response.content)
         self.set_ic_values(doc)
         return doc
@@ -111,6 +114,8 @@ class CaesarScraper(object):
             raise Exception("This page is no longer available." +
                 "To continue, return to your most recent active page " +
                 "or select one of the navigation icons in the header above.")
+        if self.NO_CTEC_ACCESS_PAGE in response.content:
+            raise Exception("This account doesn't have access to CTECs.")
         doc = lxml.html.fromstring(response.content)
         self.set_ic_values(doc)
         return doc
